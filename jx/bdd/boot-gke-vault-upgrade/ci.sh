@@ -91,9 +91,6 @@ helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
     --test-git-pr-number 96 \
-    --use-revision \
-    --version-repo-pr \
-    --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
     --config ../jx/bdd/boot-gke-vault-upgrade/cluster.yaml \
     --gopath /tmp \
     --git-provider=github \
