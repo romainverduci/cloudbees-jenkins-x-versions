@@ -61,6 +61,8 @@ tar -zxvf jx-linux-amd64.tar.gz
 export JX_UPGRADE_BIN_DIR=$(pwd)
 cd ..
 
+echo "Starting with binary from $PREVIOUS_JX_DOWNLOAD_LOCATION"
+echo "Upgrading using binary from $JX_DOWNLOAD_LOCATION"
 
 sed -i "/^ *versionStream:/,/^ *[^:]*:/s/ref: .*/ref: master/" ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml
 
@@ -90,7 +92,8 @@ helm init --client-only
 helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
-    --test-git-pr-number 96 \
+    --test-git-branch upgrade-boot \
+    --test-git-repo https://github.com/daveconde/bdd-jx.git \
     --config ../jx/bdd/boot-gke-vault-upgrade/cluster.yaml \
     --gopath /tmp \
     --git-provider=github \
