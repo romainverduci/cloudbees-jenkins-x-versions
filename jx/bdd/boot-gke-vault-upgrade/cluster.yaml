@@ -1,5 +1,5 @@
 clusters:
-  - name: boot-vault-gke-upgrade
+  - name: gke-upgrade
     args:
       - create
       - cluster
