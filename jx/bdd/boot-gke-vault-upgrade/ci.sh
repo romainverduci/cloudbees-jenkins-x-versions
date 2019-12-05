@@ -105,6 +105,6 @@ jx step bdd \
     --no-delete-repo \
     --tests install \
     --tests test-verify-pods \
-    --tests upgrade-boot \
+    --tests test-upgrade-boot \
     --tests test-verify-pods \
     --tests test-create-spring
