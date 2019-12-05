@@ -62,7 +62,7 @@ export JX_UPGRADE_BIN_DIR=$(pwd)
 cd ..
 
 
-sed -i "/^ *versionStream:/,/^ *[^:]*:/s/ref: .*/ref: master/" ../jx/bdd/boot-gke-vault/jx-requirements.yml
+sed -i "/^ *versionStream:/,/^ *[^:]*:/s/ref: .*/ref: master/" ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml
 
 
 
@@ -75,25 +75,26 @@ if [[ "${DOMAIN_ROTATION}" == "true" ]]; then
         exit -1
     fi
     echo "Using domain: ${DOMAIN}"
-    sed -i "/^ *ingress:/,/^ *[^:]*:/s/domain: .*/domain: ${DOMAIN}/" ../jx/bdd/boot-gke-vault/jx-requirements.yml
+    sed -i "/^ *ingress:/,/^ *[^:]*:/s/domain: .*/domain: ${DOMAIN}/" ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml
 fi
 
-echo "Using ../jx/bdd/boot-gke-vault/jx-requirements.yml"
-cat ../jx/bdd/boot-gke-vault/jx-requirements.yml
+echo "Using ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml"
+cat ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml
 
 
 
-cp ../jx/bdd/boot-gke-vault/jx-requirements.yml .
+cp ../jx/bdd/boot-gke-vault-upgrade/jx-requirements.yml .
 
 # TODO hack until we fix boot to do this too!
 helm init --client-only
 helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
 
 jx step bdd \
+    --test-git-pr-number 96 \
     --use-revision \
     --version-repo-pr \
     --versions-repo https://github.com/cloudbees/cloudbees-jenkins-x-versions.git \
-    --config ../jx/bdd/boot-gke-vault/cluster.yaml \
+    --config ../jx/bdd/boot-gke-vault-upgrade/cluster.yaml \
     --gopath /tmp \
     --git-provider=github \
     --git-username $GH_USERNAME \
