@@ -47,5 +47,5 @@ pipelineConfig:
                   - name: REPORT_SUITE_NAME
                     value: GKE_Boot_UI_BDD_Tests
                 command: jx/bdd/boot-gke-jxui/ci.sh
-                image: gcr.io/jenkinsxio/builder-go-nodejs:2.0.993-322
+                image: gcr.io/jenkinsxio/builder-go-nodejs:2.0.1005-336
                 name: runci
